@@ -2,7 +2,7 @@
   "name": "mailchimp-api-v3",
   "version": "0.0.1",
   "description": "NodeJS support for the mailchimp v3 API",
-  "main": "mailchimp-api-v3.js",
+  "main": "mailchimp-v3-api.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
