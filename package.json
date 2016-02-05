@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/kubrickology/mailchimp-API-v3#readme",
   "dependencies": {
+    "jshint": "^2.9.1",
     "q": "^1.4.1"
   }
 }
