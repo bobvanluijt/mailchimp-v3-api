@@ -1,0 +1,27 @@
+{
+  "name": "mailchimp-api-v3",
+  "version": "0.0.1",
+  "description": "NodeJS support for the mailchimp v3 API",
+  "main": "mailchimp-api-v3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kubrickology/mailchimp-API-v3.git"
+  },
+  "keywords": [
+    "Mailchimp",
+    "API",
+    "v3"
+  ],
+  "author": "Bob van Luijt <bob@kubrickolo.gy> (http://kubrickolo.gy)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kubrickology/mailchimp-API-v3/issues"
+  },
+  "homepage": "https://github.com/kubrickology/mailchimp-API-v3#readme",
+  "dependencies": {
+    "q": "^1.4.1"
+  }
+}
