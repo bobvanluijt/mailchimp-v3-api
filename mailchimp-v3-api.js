@@ -2,10 +2,10 @@
 /**
  * Mailchimps API V3 integration 
  */
-var HTTPS 			= require('https'),
-	Q 				= require('q'),
+var HTTPS 		= require('https'),
+	Q 		= require('q'),
 	STRINGDECODER 	= require('string_decoder').StringDecoder,
-	DECODER 		= new STRINGDECODER('utf8');
+	DECODER 	= new STRINGDECODER('utf8');
 
 /**
  * The Mailchimp v3 API integration for nodejs
