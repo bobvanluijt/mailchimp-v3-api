@@ -9,7 +9,7 @@ As simple as possible for simple Mailchimp V3 API calls.
 For more information see: http://developer.mailchimp.com/documentation/mailchimp/
 
 ## Installation:
-`npm install mailchimp-API-v3 --save`
+`npm install mailchimp-v3-api --save`
 
 ## Usage:
 _note: You need a nodejs or iojs version that supports ES6_
