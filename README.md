@@ -1,11 +1,11 @@
 # mailchimp-v3
-[![NPM](https://img.shields.io/npm/v/mailchimp-v3.svg)](https://www.npmjs.com/package/mailchimp-v3)
-[![Build Status](https://travis-ci.org/kubrickology/mailchimp-v3.svg)](https://travis-ci.org/kubrickology/mailchimp-v3)
+[![NPM](https://img.shields.io/npm/v/mailchimp-API-v3.svg)](https://www.npmjs.com/package/mailchimp-v3)
+[![Build Status](https://travis-ci.org/kubrickology/mailchimp-API-v3.svg)](https://travis-ci.org/kubrickology/mailchimp-v3)
 Node module for Mailchimp API v3
 For more information see: http://developer.mailchimp.com/documentation/mailchimp/
 
 ## Installation:
-`npm install mailchimp-v3 --save`
+`npm install mailchimp-API-v3 --save`
 
 ## Usage:
 _note: You need a nodejs or iojs version that supports ES6_
@@ -13,7 +13,7 @@ _note: You need a nodejs or iojs version that supports ES6_
 - First include the Mailchimp-v3 script and add the key.
 
 ```js
-var MAILCHIMP_V3 = require('./mailchimp-v3.js');
+var MAILCHIMP_V3 = require('./mailchimp-API-v3.js');
 var MAILCHIMP = new MAILCHIMP_V3({
   key: '[KEY]',       // mandatory, API key http://kb.mailchimp.com/accounts/management/about-api-keys
   debug: [boolean],   // optional, auto set to false
