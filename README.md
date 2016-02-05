@@ -1,4 +1,4 @@
-# Mailchimp v3
+# mailchimp v3 API
 [![NPM](https://img.shields.io/npm/v/mailchimp-api-v3.svg)](https://www.npmjs.com/package/mailchimp-api-v3)
 [![Build Status](https://travis-ci.org/kubrickology/mailchimp-api-v3.svg)](https://travis-ci.org/kubrickology/mailchimp-api-v3)
 
