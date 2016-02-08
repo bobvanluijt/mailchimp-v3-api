@@ -28,7 +28,7 @@ class MailChimpV3 {
     	if(typeof i.key === 'undefined'){
     		console.warn('WARN: Key is undefined, add your API KEY');
     	} else {
-	    	this.key = key;
+	    	this.key = i.key;
 	    }
 	    /**
     	 * Check if custom server location is set, if not, set to 12
@@ -56,7 +56,7 @@ class MailChimpV3 {
 	 * @param {string}	method Method set for request type
 	 * @return {Object}	returns the promises then() and error()
 	 */
-    connect(endpoint, method){
+    connect(endpoint, method, data){
     	/**
     	 * Using Q for promises
     	 */
@@ -71,30 +71,56 @@ class MailChimpV3 {
     		auth: 'anystring:' + this.key,
 			hostname: this.location + '.api.mailchimp.com',
 			port: 443,
-			path: '/3.0/Lists',
+			path: '/3.0' + endpoint,
 			method: method
 		}
+
+		/**
+		 * If data is set, add to POST
+		 */
+		if(typeof data != 'undefined'){
+			options['headers'] = {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Content-Length': Buffer.byteLength(data)
+	    	}
+	    	options['body'] = data;
+	    } else {
+	    	if(this.debug === true){
+	    		console.log('** No data is set');
+	    	}
+	    }
+
+	    console.log('HERE WE GO!!!!');
+	    console.log(options);
+
 		/**
 		 * Do the actual request, console.logs if debug === true
 		 */
 		var req = HTTPS.request(options, (res) => {
+
 		  	if(this.debug === true){
-		  		console.log('statusCode: ', res.statusCode);
-		  		console.log('headers: ', res.headers);
+		  		console.log('** statusCode: ', res.statusCode);
+		  		console.log('** headers: ', res.headers);
+		  		console.log('** response: ' + res);
 			}
 			res.on('data', (d) => {
 				/**
 				 * Sending the response as a deffer
 				 */
-				deferred.resolve(DECODER.write(d));
+				deferred.resolve(JSON.parse(DECODER.write(d)));
 			});
+
 		});
+
 		req.end();
 		/**
 		 * Send error promise if error occured
 		 */
 		req.on('error', (e) => {
-			deferred.reject(new Error(e));
+			if(this.debug === true){
+				console.error('ERROR: ' + e);
+			}
+			deferred.reject(e);
 		});
 		/**
 		 * Return the promise
@@ -121,15 +147,31 @@ class MailChimpV3 {
 	    	.connect(endpoint, 'GET')
 	    	.then(function(d){
 	    		deferred.resolve(d);
-	    	})
-	    	.error(function(e){
-	    		console.error('OOPS ' + e);
 	    	});
+	    	//.error(function(e){
+	    	//	console.error('OOPS ' + e);
+	    	//});
     	return deferred.promise;
     }
 
-    post(endpoint){
+    post(endpoint, data){
+    	/**
+    	 * Using Q for promises
+    	 */
+    	var deferred = Q.defer();
 
+    	/**
+    	 * Do the request and prepare promise
+    	 */
+    	this
+	    	.connect(endpoint, 'POST', data)
+	    	.then(function(d){
+	    		deferred.resolve(d);
+	    	});
+	    	//.error(function(e){
+	    	//	console.error('OOPS ' + e);
+	    	//});
+    	return deferred.promise;
     }
 
     patch(endpoint){
