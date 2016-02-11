@@ -1,5 +1,5 @@
 {
-  "name": "mailchimp-api-v3",
+  "name": "mailchimp-v3-api",
   "version": "0.0.2",
   "description": "NodeJS support for the mailchimp v3 API",
   "main": "mailchimp-v3-api.js",
