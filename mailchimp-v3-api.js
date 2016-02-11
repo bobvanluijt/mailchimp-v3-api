@@ -57,6 +57,9 @@ class MailChimpV3 {
 	 * @return {Object}	returns the promises then() and error()
 	 */
     connect(endpoint, method, data){
+
+    	var decodedData = JSON.stringify(data);
+
     	/**
     	 * Using Q for promises
     	 */
@@ -78,20 +81,16 @@ class MailChimpV3 {
 		/**
 		 * If data is set, add to POST
 		 */
-		if(typeof data != 'undefined'){
+		if(typeof data !== 'undefined'){
 			options['headers'] = {
 				'Content-Type': 'application/x-www-form-urlencoded',
-				'Content-Length': Buffer.byteLength(data)
+				'Content-Length': decodedData.length
 	    	}
-	    	options['body'] = data;
 	    } else {
 	    	if(this.debug === true){
-	    		console.log('** No data is set');
+	    		console.log('** No data is set (sometimes this is ok, for example with a GET request)');
 	    	}
 	    }
-
-	    console.log('HERE WE GO!!!!');
-	    console.log(options);
 
 		/**
 		 * Do the actual request, console.logs if debug === true
@@ -112,7 +111,13 @@ class MailChimpV3 {
 
 		});
 
-		req.end();
+		/**
+		 * If data is set, add to POST
+		 */
+		if(method === 'POST'){
+	    	req.write(decodedData);
+	    }
+
 		/**
 		 * Send error promise if error occured
 		 */
@@ -122,6 +127,9 @@ class MailChimpV3 {
 			}
 			deferred.reject(e);
 		});
+
+		req.end();
+
 		/**
 		 * Return the promise
 		 */
