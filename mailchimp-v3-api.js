@@ -76,7 +76,7 @@ class MailChimpV3 {
 			port: 443,
 			path: '/3.0' + endpoint,
 			method: method
-		}
+		};
 
 		/**
 		 * If data is set, add to POST
@@ -85,7 +85,7 @@ class MailChimpV3 {
 			options['headers'] = {
 				'Content-Type': 'application/x-www-form-urlencoded',
 				'Content-Length': decodedData.length
-	    	}
+			};
 	    } else {
 	    	if(this.debug === true){
 	    		console.log('** No data is set (sometimes this is ok, for example with a GET request)');
@@ -95,6 +95,7 @@ class MailChimpV3 {
 		/**
 		 * Do the actual request, console.logs if debug === true
 		 */
+		var resRaw = [];
 		var req = HTTPS.request(options, (res) => {
 
 		  	if(this.debug === true){
@@ -103,10 +104,15 @@ class MailChimpV3 {
 		  		console.log('** response: ' + res);
 			}
 			res.on('data', (d) => {
+				resRaw.push(DECODER.write(d));
+			});
+
+			res.on('end', () => {
 				/**
-				 * Sending the response as a deffer
-				 */
-				deferred.resolve(JSON.parse(DECODER.write(d)));
+				* Sending the response as a deffer
+				*/
+				var jsonRes = JSON.parse(resRaw.join(''));
+				deferred.resolve(jsonRes);
 			});
 
 		});
