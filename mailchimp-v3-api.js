@@ -189,15 +189,61 @@ class MailChimpV3 {
     }
 
     patch(endpoint){
+    	/**
+    	 * Using Q for promises
+    	 */
+    	var deferred = Q.defer();
 
+    	/**
+    	 * Do the request and prepare promise
+    	 */
+    	this
+	    	.connect(endpoint, 'PATCH', data)
+	    	.then(function(d){
+	    		deferred.resolve(d);
+	    	});
+	    	//.error(function(e){
+	    	//	console.error('OOPS ' + e);
+	    	//});
+    	return deferred.promise;
     }
 
     put(endpoint){
-
+    	    	/**
+    	 * Using Q for promises
+    	 */
+    	var deferred = Q.defer();
+    	/**
+    	 * Do the request and prepare promise
+    	 */
+    	this
+	    	.connect(endpoint, 'PUT')
+	    	.then(function(d){
+	    		deferred.resolve(d);
+	    	});
+	    	//.error(function(e){
+	    	//	console.error('OOPS ' + e);
+	    	//});
+    	return deferred.promise;
     }
 
     delete(endpoint){
-
+    	    	/**
+    	 * Using Q for promises
+    	 */
+    	var deferred = Q.defer();
+    	/**
+    	 * Do the request and prepare promise
+    	 */
+    	this
+	    	.connect(endpoint, 'DELETE')
+	    	.then(function(d){
+	    		deferred.resolve(d);
+	    	});
+	    	//.error(function(e){
+	    	//	console.error('OOPS ' + e);
+	    	//});
+    	return deferred.promise;
     }
 
 }
