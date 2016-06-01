@@ -2,10 +2,10 @@
 /**
  * Mailchimps API V3 integration 
  */
-var HTTPS 		= require('https'),
-	Q 		= require('q'),
+var HTTPS 			= require('https'),
+	Q 				= require('q'),
 	STRINGDECODER 	= require('string_decoder').StringDecoder,
-	DECODER 	= new STRINGDECODER('utf8');
+	DECODER 		= new STRINGDECODER('utf8');
 
 /**
  * The Mailchimp v3 API integration for nodejs
@@ -188,7 +188,7 @@ class MailChimpV3 {
     	return deferred.promise;
     }
 
-    patch(endpoint){
+    patch(endpoint, data){
     	/**
     	 * Using Q for promises
     	 */
@@ -208,7 +208,7 @@ class MailChimpV3 {
     	return deferred.promise;
     }
 
-    put(endpoint){
+    put(endpoint, data){
     	    	/**
     	 * Using Q for promises
     	 */
@@ -217,7 +217,7 @@ class MailChimpV3 {
     	 * Do the request and prepare promise
     	 */
     	this
-	    	.connect(endpoint, 'PUT')
+	    	.connect(endpoint, 'PUT', data)
 	    	.then(function(d){
 	    		deferred.resolve(d);
 	    	});
@@ -227,7 +227,7 @@ class MailChimpV3 {
     	return deferred.promise;
     }
 
-    delete(endpoint){
+    delete(endpoint, data){
     	    	/**
     	 * Using Q for promises
     	 */
@@ -236,7 +236,7 @@ class MailChimpV3 {
     	 * Do the request and prepare promise
     	 */
     	this
-	    	.connect(endpoint, 'DELETE')
+	    	.connect(endpoint, 'DELETE', data)
 	    	.then(function(d){
 	    		deferred.resolve(d);
 	    	});

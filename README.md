@@ -29,17 +29,63 @@ var MAILCHIMP = new MAILCHIMP_V3({
 
 - You can include the method as function and the endpoint as first parameter and call a then() promise on the result
 
-### .GET(endpoint)
+### Endpoints
 
 All attributes that have GET methods attached can be called through the get(endpoint) function. Where the param is the endpoint. (endpoints overview: http://goo.gl/s0zf63)
 
 _Note: Always include the complete path, like '/lists' or '/lists/{list_id}/interest-categories'_
 
-Example:
+Examples:
+
+*GET*
+
 ```js
 MAILCHIMP
 	.get('/lists')
 	.then(function(response){
 		console.log(response);
 	})
+
 ```
+
+*POST*
+
+```js
+MAILCHIMP
+	.post('/lists', { "some": "data"} )
+	.then(function(response){
+		console.log(response);
+	})
+```
+
+*PATCH*
+
+```js
+MAILCHIMP
+	.patch('/lists', { "some": "data"} )
+	.then(function(response){
+		console.log(response);
+	})
+```
+
+*PUT*
+
+```js
+MAILCHIMP
+	.put('/lists', { "some": "data"} )
+	.then(function(response){
+		console.log(response);
+	})
+```
+
+*DELETE*
+
+```js
+MAILCHIMP
+	.delete('/lists', { "some": "data"} )
+	.then(function(response){
+		console.log(response);
+	})
+```
+
+_For delete() the data is optional_
