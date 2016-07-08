@@ -108,11 +108,13 @@ class MailChimpV3 {
             });
 
             res.on('end', () => {
-                /**
+               /**
                 * Sending the response as a deffer
                 */
-                var jsonRes = JSON.parse(resRaw.join(''));
-                deferred.resolve(jsonRes);
+                if(resRaw[0] !== undefined && resRaw[0] !== null){
+	                var jsonRes = JSON.parse(resRaw.join(''));
+	                deferred.resolve(jsonRes);
+	            }
             });
 
         });
@@ -121,8 +123,8 @@ class MailChimpV3 {
          * If data is set, add to POST or PATCH
          */
         if(method === 'POST' || method === 'PATCH'){
-                req.write(decodedData);
-            }
+            req.write(decodedData);
+        }
 
         /**
          * Send error promise if error occured
@@ -161,9 +163,6 @@ class MailChimpV3 {
             .connect(endpoint, 'GET')
             .then(d => {
                 deferred.resolve(d);
-            })
-            .catch(e => {
-                console.error(e);
             });
         return deferred.promise;
     }
@@ -181,9 +180,6 @@ class MailChimpV3 {
             .connect(endpoint, 'POST', data)
             .then(d => {
                 deferred.resolve(d);
-            })
-            .catch(e => {
-                console.error(e);
             });
         return deferred.promise;
     }
@@ -201,9 +197,6 @@ class MailChimpV3 {
             .connect(endpoint, 'PATCH', data)
             .then(d => {
                 deferred.resolve(d);
-            })
-            .catch(e => {
-                console.error(e);
             });
         return deferred.promise;
     }
@@ -220,14 +213,11 @@ class MailChimpV3 {
             .connect(endpoint, 'PUT', data)
             .then(d => {
                 deferred.resolve(d);
-            })
-            .catch(e => {
-                console.error(e);
             });
         return deferred.promise;
     }
 
-    delete(endpoint, data){
+    delete(endpoint){
         /**
          * Using Q for promises
          */
@@ -236,12 +226,9 @@ class MailChimpV3 {
          * Do the request and prepare promise
          */
         this
-            .connect(endpoint, 'DELETE', data)
+            .connect(endpoint, 'DELETE')
             .then(d => {
                 deferred.resolve(d);
-            })
-            .catch(e => {
-                console.error(e);
             });
         return deferred.promise;
     }
