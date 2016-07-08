@@ -2,10 +2,10 @@
 /**
  * Mailchimps API V3 integration 
  */
-var HTTPS 			= require('https'),
-	Q 				= require('q'),
-	STRINGDECODER 	= require('string_decoder').StringDecoder,
-	DECODER 		= new STRINGDECODER('utf8');
+var HTTPS               = require('https'),
+    Q 		        = require('q'),
+    STRINGDECODER       = require('string_decoder').StringDecoder,
+    DECODER 	        = new STRINGDECODER('utf8');
 
 /**
  * The Mailchimp v3 API integration for nodejs
@@ -41,7 +41,7 @@ class MailChimpV3 {
 	    /**
     	 * Check if debug is set, if not, set to false
     	 */
-    	if(typeof i.debug === 'undefined'){
+    	if(typeof i.debug === 'boolean'){
     		this.debug = false;
     	} else {
 	    	this.debug = true;
