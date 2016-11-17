@@ -84,7 +84,7 @@ class MailChimpV3 {
         if(typeof data !== 'undefined'){
             options['headers'] = {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Content-Length': decodedData.length
+                'Content-Length': Buffer.byteLength(decodedData)
             };
         } else {
             if(this.debug === true){
