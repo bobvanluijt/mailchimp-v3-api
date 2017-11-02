@@ -120,9 +120,9 @@ class MailChimpV3 {
         });
 
         /**
-         * If data is set, add to POST or PATCH
+         * If data is set, add to POST or PATCH or PUT
          */
-        if(method === 'POST' || method === 'PATCH'){
+        if(method === 'POST' || method === 'PATCH' || method === 'PUT'){
             req.write(decodedData);
         }
 
